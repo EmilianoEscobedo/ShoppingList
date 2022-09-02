@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Querido Jony: Como veras, un poco me enquilombe en algunas cosas. No use el form y los select tags de la manera adecuada y hay algunos parches con alambre en js. No tuve tiempo de ver las jam que salieron esporadicamente, donde tirabas algunas lineas de como resolver el reto, entonces lo resolvi solo, googleando y aprendiendo mas todavia sobre algunos metodos nativos de js, como filter o recorrer un array de un contenedor dinamicamente con forEach. Preferi terminarlo, antes de frustrarme y abandonar. El reto funciona, pero se que lo puedo hacer mejor y mas organizadamente, que es primordial para trabajar. Prometo que el proximo reto me voy a ajustar mas a la manera en la que pedis que lo hagamos. Un besote enorme, te quiero 3000 <3  -->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    
+    <!-- Links -->
+
+    <link rel="shortcut icon" href="/assets/images/favicon-lsl.svg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!-- HTML Meta Tags -->
+
+     <meta name="description" content="Create your own shopping list with Laingard, your friendly lemur">
+     <meta name="keywords" content="shopping, list, category, add, filter, buy, items">
+     <meta name="author" content="Emiliano Escobedo">
+     <meta name="robots" content="index, follow">
+ 
+   <!-- Facebook Meta Tags -->
+
+   <meta property="og:url" content="">
+   <meta property="og:type" content="website">
+   <meta property="og:title" content="Laingard's Shopping List">
+   <meta property="og:description" content="Create your own shopping list with Laingard, your friendly lemur, and forget anything from your next visit to the shop!">
+   <meta property="og:image" content="/assets/images/og-preview.png">
+ 
+   <!-- Twitter Meta Tags -->
+
+   <meta name="twitter:card" content="summary_large_image">
+   <meta property="twitter:domain" content="laingard-podcast.web.app">
+   <meta property="twitter:url" content="">
+   <meta name="twitter:title" content="Laingard's Shopping List">
+   <meta name="twitter:description" content="CCreate your own shopping list with Laingard, your friendly lemur, and forget anything from your next visit to the shop!">
+   <meta name="twitter:image" content="/assets/images/og-preview.png">
+
+</head>
+
+<body>
+    <header class="d-flex align-items-center">
+        <nav class="row w-100">
+            <div class="col-xl-1"></div>
+            <div class="col-6 col-xl-6 p-0">
+                <a class="ms-5 ms-xl-0 d-flex align-items-center" href="index.html">
+                    <img src="/assets/images/lsl-logo.svg" class="img-fluid" alt="Laingard Shopping List Logo">
+                    <h1 class="title">Laingard's Shopping List</h1>
+                </a>
+            </div>
+            <div class="col-6 col-xl-5 d-flex align-items-center">
+                <ul class="d-flex justify-content-around w-100">
+                    <li>
+                        <button id='howTo' class="header--btn">
+                            How To
+                        </button>
+                    </li>
+                    <li>
+                        <button id='about' class="header--btn">
+                            About
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class=" main mx-2">
+            <div id="splash" class="splash-container">
+                <div  class="main--splash"></div>
+            </div>
+            
+            <button id="add" class="main--btn">
+                <i class="fa-solid fa-circle-plus"></i>
+            </button>
+            
+            <!-- Add new item popup -->
+            <div id="popup" class="off main--popup-container">
+                <div class="main--popup">
+                    <div class="d-flex justify-content-between"> 
+                        <div class="dropdown">
+                            <button id="popupCategory" class="btn dropdown-btn dropdown-toggle text-center" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/assets/images/i-cart.png" class="icon" alt="">
+                                Category
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li>
+                                    <button id="food"class=" food dropdown-item" type="button">
+                                        <img id='i-food' src="/assets/images/i-food.png" class="me-1 icon" alt=""> Food
+                                    </button>
+                                </li>
+                                <li>
+                                    <button id="home" class="dropdown-item" type="button">
+                                        <img id='i-home' src="/assets/images/i-electronics.png" class="me-1 icon" alt=""> Home
+                                    </button>
+                                </li>
+                                <li>
+                                    <button id="clothes" class="dropdown-item" type="button">
+                                        
+                                        <img id='i-clothes' src="/assets/images/i-clothes.png" class="me-1 icon" alt=""> Clothes
+                                    </button>
+                                </li>
+                                <li>
+                                    <button id="tools" class="dropdown-item" type="button">
+                                        <img id='i-tools' src="/assets/images/i-tools.png" class="me-1 icon" alt=""> Tools
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="button" id="btnClose">
+                            <img src="/assets/images/i-close.png" class="icon btn--close" alt="">
+                        </button>
+                    </div>
+                    <div class="w-100">
+                        <form id="form">
+                            <input id="popupItem" type="text" placeholder="Item">
+                            <textarea id="popupDescription" placeholder="Description"></textarea>
+                        </form>
+                    </div>
+                    <div class="row w-100">
+                        <div class="col-9"></div>
+                        <div class="col-3">
+                            <button type="button" id="popupAdd" class="popup--btn">
+                                Add +
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End add new item popup -->
+
+            <!-- Category list -->
+            <div id="list" class="off main--list container">
+                <div class="row my-4">
+                    <div class="col-5"></div>
+                    <div class="col-7">
+                        <div class="dropdown text-end">
+                            <label class="label--FilterBy my-1 px-1">
+                                Filter by
+                            </label>
+                            <button id="listFilterBy" class="btn dropdown-btn dropdown-toggle text-center" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li>
+                                    <button class="dropdown-item" type="button">
+                                        <img id='all' src="/assets/images/i-fullcart.png" class="me-1 icon" alt=""> All
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">
+                                        <img id="i-food" src="/assets/images/i-food.png" class="icon" alt="">Food
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">
+                                        <img id="i-home" src="/assets/images/i-electronics.png" class="icon" alt="">  Home
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">
+                                        <img id="i-clothes" src="/assets/images/i-clothes.png" class="icon" alt=""> Clothes
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">
+                                        <img id="i-tools" src="/assets/images/i-tools.png" class="icon" alt=""> Tools
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul id="listItem">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End category list -->
+        </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/main.js"></script>
+</body>
+</html> 
