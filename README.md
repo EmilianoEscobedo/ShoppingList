@@ -1,4 +1,33 @@
-#  Challenge 003 - Escuela DevRock  - WinterHack 2022
+#  Shopping List
+Simple app that allows you to make a shopping list with categories. Use HTML, CSS and vanilla JS.
 
-The task was to create a shopping list with HTML, CSS and vanilla JS (without db).
-The layout was built in a responsive way with flexbox and boostrap, developed has mobile first.
+<br><br>
+
+<div align="center">
+  <img src="https://i.ibb.co/jRfBmDP/Home.png" style="width:40%" />
+  <p>Home</p>
+</div>
+
+### Functionalities
+
+Allows adding, filtering and deleting items.
+
+<br><br>
+
+<div align="center">
+  <img src="https://i.ibb.co/4S6LTv3/List.png" style=" width:40%"/>
+  <p>List</p>
+</div>
+
+### Responsive
+
+it was developed as mobile first with Bootstrap grid, and CSS Flexbox.
+
+<br><br>
+
+<div align="center">
+  <img src="https://i.ibb.co/J3f8QCr/mobile.png" style="height:50% width:40%" />
+  <p>Mobile view</p>
+</div>
+
+
